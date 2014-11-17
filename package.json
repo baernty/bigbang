@@ -1,0 +1,29 @@
+{
+  "name": "bigbang",
+  "version": "0.1.0",
+  "description": "BigBang - A wordpress Starter Theme",
+  "main": "-",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://maxxscho@github.com/maxxscho/bigbang.git"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "starter"
+  ],
+  "author": "Markus Schober",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxxscho/bigbang/issues"
+  },
+  "homepage": "https://github.com/maxxscho/bigbang",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-ruby-sass": "^0.7.1"
+  }
+}
