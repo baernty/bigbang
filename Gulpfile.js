@@ -19,7 +19,7 @@ var assets      = 'assets/',
 ------------------------------------- */
 gulp.task('sass', function () {
     gulp.src(scssSrcDir + 'style.scss')
-        .pipe(sass())
+        .pipe(sass({loadPath: [bowerDir, scssSrcDir]}))
         .pipe(prefix("last 2 versions"))
         .pipe(gulp.dest('.'));
 });
