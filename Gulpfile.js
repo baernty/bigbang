@@ -2,7 +2,8 @@
 ------------------------------------- */
 var gulp        = require('gulp'),
     sass        = require('gulp-ruby-sass'),
-    prefix      = require('gulp-autoprefixer');
+    prefix      = require('gulp-autoprefixer'),
+    livereload  = require('gulp-livereload');
 
 
 /* Paths
@@ -27,14 +28,20 @@ gulp.task('sass', function () {
             browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1'],
             cascade: true
         }))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('.'))
+        .pipe(livereload());
 });
 
 
 /* Watch Task
 ------------------------------------- */
 gulp.task('watch', function () {
+    var server = livereload();
+
     gulp.watch(scssSrcDir + '**/*.scss', ['sass']);
+    gulp.watch(['**/*.php']).on('change', function (file) {
+        server.changed(file.path);
+    });
 });
 
 
