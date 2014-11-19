@@ -47,10 +47,12 @@ and Blueprint http://www.blueprintcss.org/
 
 // 0.1 Variables
 // -------------------------------------
+@import "config/config";
 
 
 // 0.2 Mixins
 // -------------------------------------
+@import "mixins/mixins";
 
 
 // 0.3 Bourbon
@@ -66,59 +68,59 @@ and Blueprint http://www.blueprintcss.org/
 
 /* 1.0 Normalize
 ------------------------------------- */
-@import "normalize.css/normalize.css";
+@import "assets/bower_components/normalize.css/normalize.css";
 
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/
-// @import "typography/typography";
+@import "typography/typography";
 
 /*--------------------------------------------------------------
 3.0 Elements
 --------------------------------------------------------------*/
-// @import "elements/elements";
+@import "elements/elements";
 
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
-// @import "forms/forms";
+@import "forms/forms";
 
 /*--------------------------------------------------------------
 5.0 Navigation
 --------------------------------------------------------------*/
-// @import "navigation/navigation";
+@import "navigation/navigation";
 
 /*--------------------------------------------------------------
 6.0 Accessibility
 --------------------------------------------------------------*/
-// @import "modules/accessibility";
+@import "modules/accessibility";
 
 /*--------------------------------------------------------------
 7.0 Alignments
 --------------------------------------------------------------*/
-// @import "modules/alignments";
+@import "modules/alignments";
 
 /*--------------------------------------------------------------
 8.0 Clearings
 --------------------------------------------------------------*/
-// @import "modules/clearings";
+@import "modules/clearings";
 
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
-// @import "site/secondary/widgets";
+@import "site/secondary/widgets";
 
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
-// @import "site/site";
+@import "site/site";
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
 --------------------------------------------------------------*/
-// @import "modules/infinite-scroll";
+@import "modules/infinite-scroll";
 
 /*--------------------------------------------------------------
 12.0 Media
 --------------------------------------------------------------*/
-// @import "media/media";
+@import "media/media";

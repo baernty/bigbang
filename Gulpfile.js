@@ -19,8 +19,14 @@ var assets      = 'assets/',
 ------------------------------------- */
 gulp.task('sass', function () {
     gulp.src(scssSrcDir + 'style.scss')
-        .pipe(sass({loadPath: [bowerDir, scssSrcDir]}))
-        .pipe(prefix("last 2 versions"))
+        .pipe(sass({
+            sourcemapPath: './assets',
+            loadPath: [bowerDir, scssSrcDir]
+        }))
+        .pipe(prefix({
+            browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1'],
+            cascade: true
+        }))
         .pipe(gulp.dest('.'));
 });
 
