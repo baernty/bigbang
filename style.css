@@ -91,8 +91,8 @@ address {
 pre {
   background: #eee;
   font-family: "Courier 10 Pitch", Courier, monospace;
-  font-size: 1.5px;
-  font-size: 0.09375rem;
+  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.6;
   margin-bottom: 1.6em;
   max-width: 100%;
@@ -100,8 +100,8 @@ pre {
   padding: 1.6em; }
 
 code, kbd, tt, var {
-  font-size: 1.5px;
-  font-size: 0.09375rem;
+  font-size: 15px;
+  font-size: 0.9375rem;
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; }
 
 abbr, acronym {
@@ -205,8 +205,8 @@ input[type="submit"] {
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   -webkit-appearance: button;
   /* Corrects inability to style clickable 'input' types in iOS */
-  font-size: 1.2px;
-  font-size: 0.075rem;
+  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1;
   padding: .6em 1em .4em;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
@@ -377,8 +377,8 @@ a {
     clip: auto !important;
     color: #21759b;
     display: block;
-    font-size: 1.4px;
-    font-size: 0.0875rem;
+    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: bold;
     height: auto;
     left: 5px;
