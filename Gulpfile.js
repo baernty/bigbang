@@ -1,9 +1,11 @@
 /* Modules
 ------------------------------------- */
 var gulp        = require('gulp'),
-    sass        = require('gulp-ruby-sass'),
-    prefix      = require('gulp-autoprefixer'),
+    concat      = require('gulp-concat'),
+    jslint      = require('gulp-jslint'),
     livereload  = require('gulp-livereload'),
+    prefix      = require('gulp-autoprefixer'),
+    sass        = require('gulp-ruby-sass'),
     uglify      = require('gulp-uglify');
 
 
@@ -35,12 +37,63 @@ gulp.task('sass', function () {
 });
 
 
-/* Modernizr
+/* Modernizr Task
 ------------------------------------- */
 gulp.task('modernizr', function () {
     gulp.src(bowerDir + 'modernizr/modernizr.js')
         .pipe(uglify())
         .pipe(gulp.dest(jsDir));
+});
+
+
+/* Frontend Scripts Task
+------------------------------------- */
+gulp.task('frontendScripts', function () {
+    var concatination = [
+        bowerDir + 'jquery/dist/jquery.js',
+        jsSrcDir + 'frontend/navigation.js',
+        jsSrcDir + 'frontend/skip-link-focus-fix.js',
+        jsSrcDir + 'frontend/main.js'
+    ];
+
+    gulp.src(jsSrcDir + 'frontend/*.js')
+        .pipe(jslint({
+            node: true,
+            evil: true,
+            nomen: true,
+            errorsOnly: true
+        })).on('error', function(error) {
+            console.error(String(error));
+        })
+        .pipe(gulp.src(concatination))
+        .pipe(concat('main.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDir + 'frontend/'))
+        .pipe(livereload());
+});
+
+
+/* Backend Scripts Task
+------------------------------------- */
+gulp.task('backendScripts', function () {
+    var concatination = [
+        jsSrcDir + 'backend/main.js'
+    ];
+
+    gulp.src(jsSrcDir + 'backend/*.js')
+        .pipe(jslint({
+            node: true,
+            evil: true,
+            nomen: true,
+            errorsOnly: true
+        })).on('error', function(error) {
+            console.error(String(error));
+        })
+        .pipe(gulp.src(concatination))
+        .pipe(concat('main.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDir + 'backend/'))
+        .pipe(livereload());
 });
 
 
@@ -50,6 +103,8 @@ gulp.task('watch', function () {
     var server = livereload();
 
     gulp.watch(scssSrcDir + '**/*.scss', ['sass']);
+    gulp.watch(jsSrcDir + 'frontend/**/*.js', ['frontendScripts']);
+    gulp.watch(jsSrcDir + 'backend/**/*.js', ['backendScripts']);
     gulp.watch(['**/*.php']).on('change', function (file) {
         server.changed(file.path);
     });
@@ -58,4 +113,4 @@ gulp.task('watch', function () {
 
 /* Default Task
 ------------------------------------- */
-gulp.task('default', ['sass', 'modernizr', 'watch']);
+gulp.task('default', ['sass', 'modernizr', 'frontendScripts', 'backendScripts', 'watch']);
