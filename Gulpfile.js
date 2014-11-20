@@ -3,7 +3,8 @@
 var gulp        = require('gulp'),
     sass        = require('gulp-ruby-sass'),
     prefix      = require('gulp-autoprefixer'),
-    livereload  = require('gulp-livereload');
+    livereload  = require('gulp-livereload'),
+    uglify      = require('gulp-uglify');
 
 
 /* Paths
@@ -33,6 +34,15 @@ gulp.task('sass', function () {
 });
 
 
+/* Modernizr
+------------------------------------- */
+gulp.task('modernizr', function () {
+    gulp.src(bowerDir + 'modernizr/modernizr.js')
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDir));
+});
+
+
 /* Watch Task
 ------------------------------------- */
 gulp.task('watch', function () {
@@ -47,4 +57,4 @@ gulp.task('watch', function () {
 
 /* Default Task
 ------------------------------------- */
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['sass', 'modernizr', 'watch']);
