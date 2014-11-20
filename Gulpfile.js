@@ -2,6 +2,7 @@
 ------------------------------------- */
 var gulp        = require('gulp'),
     concat      = require('gulp-concat'),
+    imagemin    = require('gulp-imagemin'),
     jslint      = require('gulp-jslint'),
     livereload  = require('gulp-livereload'),
     prefix      = require('gulp-autoprefixer'),
@@ -12,10 +13,12 @@ var gulp        = require('gulp'),
 /* Paths
 ------------------------------------- */
 var assets      = 'assets/',
-    jsDir      = assets + 'js/',
+    jsDir       = assets + 'js/',
+    imgDir      = assets + 'images/',
     srcDir      = assets + 'src/',
     scssSrcDir  = srcDir + 'scss/',
     jsSrcDir    = srcDir + 'js/',
+    imgSrcDir   = srcDir + 'images/',
     bowerDir    = assets + 'bower_components/';
 
 
@@ -97,6 +100,16 @@ gulp.task('backendScripts', function () {
 });
 
 
+/* Images Task
+------------------------------------- */
+gulp.task('images', function () {
+    gulp.src(srcDir + 'images/**/*.{png,gif,jpg,jpeg}')
+        .pipe(imagemin())
+        .pipe(gulp.dest(assets + 'images/'))
+        .pipe(livereload());
+})
+
+
 /* Watch Task
 ------------------------------------- */
 gulp.task('watch', function () {
@@ -105,6 +118,7 @@ gulp.task('watch', function () {
     gulp.watch(scssSrcDir + '**/*.scss', ['sass']);
     gulp.watch(jsSrcDir + 'frontend/**/*.js', ['frontendScripts']);
     gulp.watch(jsSrcDir + 'backend/**/*.js', ['backendScripts']);
+    gulp.watch(srcDir + 'images/**/*.{png,gif,jpg,jpeg}', ['images']);
     gulp.watch(['**/*.php']).on('change', function (file) {
         server.changed(file.path);
     });
@@ -113,4 +127,4 @@ gulp.task('watch', function () {
 
 /* Default Task
 ------------------------------------- */
-gulp.task('default', ['sass', 'modernizr', 'frontendScripts', 'backendScripts', 'watch']);
+gulp.task('default', ['sass', 'modernizr', 'frontendScripts', 'backendScripts', 'images', 'watch']);
