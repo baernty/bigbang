@@ -22,6 +22,7 @@ var assets      = 'assets/',
 gulp.task('sass', function () {
     gulp.src(scssSrcDir + 'style.scss')
         .pipe(sass({
+            style: 'compact',
             sourcemapPath: './assets',
             loadPath: [bowerDir, scssSrcDir]
         }))
