@@ -12,24 +12,19 @@ var gulp        = require('gulp'),
 
 /* Paths
 ------------------------------------- */
-var assets      = 'assets/',
-    jsDir       = assets + 'js/',
-    imgDir      = assets + 'images/',
-    srcDir      = assets + 'src/',
-    scssSrcDir  = srcDir + 'scss/',
-    jsSrcDir    = srcDir + 'js/',
-    imgSrcDir   = srcDir + 'images/',
-    bowerDir    = assets + 'bower_components/';
+var assetsDir      = 'assets/',
+    srcDir      = assetsDir + 'src/',
+    bowerDir    = assetsDir + 'bower_components/';
 
 
 /* Sass Task
 ------------------------------------- */
 gulp.task('sass', function () {
-    gulp.src(scssSrcDir + 'style.scss')
+    gulp.src(srcDir + 'scss/style.scss')
         .pipe(sass({
             style: 'compact',
             sourcemapPath: './assets',
-            loadPath: [bowerDir, scssSrcDir]
+            loadPath: [bowerDir, srcDir + 'scss/']
         }))
         .pipe(prefix({
             browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1'],
@@ -45,7 +40,7 @@ gulp.task('sass', function () {
 gulp.task('modernizr', function () {
     gulp.src(bowerDir + 'modernizr/modernizr.js')
         .pipe(uglify())
-        .pipe(gulp.dest(jsDir));
+        .pipe(gulp.dest(assetsDir + 'js/'));
 });
 
 
@@ -54,12 +49,12 @@ gulp.task('modernizr', function () {
 gulp.task('frontendScripts', function () {
     var concatination = [
         bowerDir + 'jquery/dist/jquery.js',
-        jsSrcDir + 'frontend/navigation.js',
-        jsSrcDir + 'frontend/skip-link-focus-fix.js',
-        jsSrcDir + 'frontend/main.js'
+        srcDir + 'js/frontend/navigation.js',
+        srcDir + 'js/frontend/skip-link-focus-fix.js',
+        srcDir + 'js/frontend/main.js'
     ];
 
-    gulp.src(jsSrcDir + 'frontend/*.js')
+    gulp.src(srcDir + 'js/frontend/*.js')
         .pipe(jslint({
             node: true,
             evil: true,
@@ -71,7 +66,7 @@ gulp.task('frontendScripts', function () {
         .pipe(gulp.src(concatination))
         .pipe(concat('main.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDir + 'frontend/'))
+        .pipe(gulp.dest(assetsDir + 'js/frontend/'))
         .pipe(livereload());
 });
 
@@ -80,10 +75,10 @@ gulp.task('frontendScripts', function () {
 ------------------------------------- */
 gulp.task('backendScripts', function () {
     var concatination = [
-        jsSrcDir + 'backend/main.js'
+        srcDir + 'js/backend/main.js'
     ];
 
-    gulp.src(jsSrcDir + 'backend/*.js')
+    gulp.src(srcDir + 'js/backend/*.js')
         .pipe(jslint({
             node: true,
             evil: true,
@@ -95,7 +90,7 @@ gulp.task('backendScripts', function () {
         .pipe(gulp.src(concatination))
         .pipe(concat('main.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(jsDir + 'backend/'))
+        .pipe(gulp.dest(assetsDir + 'js/backend/'))
         .pipe(livereload());
 });
 
@@ -105,7 +100,7 @@ gulp.task('backendScripts', function () {
 gulp.task('images', function () {
     gulp.src(srcDir + 'images/**/*.{png,gif,jpg,jpeg}')
         .pipe(imagemin())
-        .pipe(gulp.dest(assets + 'images/'))
+        .pipe(gulp.dest(assetsDir + 'images/'))
         .pipe(livereload());
 })
 
@@ -115,9 +110,9 @@ gulp.task('images', function () {
 gulp.task('watch', function () {
     var server = livereload();
 
-    gulp.watch(scssSrcDir + '**/*.scss', ['sass']);
-    gulp.watch(jsSrcDir + 'frontend/**/*.js', ['frontendScripts']);
-    gulp.watch(jsSrcDir + 'backend/**/*.js', ['backendScripts']);
+    gulp.watch(srcDir + 'scss/**/*.scss', ['sass']);
+    gulp.watch(srcDir + 'js/frontend/**/*.js', ['frontendScripts']);
+    gulp.watch(srcDir + 'js/backend/**/*.js', ['backendScripts']);
     gulp.watch(srcDir + 'images/**/*.{png,gif,jpg,jpeg}', ['images']);
     gulp.watch(['**/*.php']).on('change', function (file) {
         server.changed(file.path);
