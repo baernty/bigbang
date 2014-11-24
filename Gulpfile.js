@@ -1,6 +1,7 @@
 /* Modules
 ------------------------------------- */
 var gulp        = require('gulp'),
+    clean       = require('gulp-clean'),
     concat      = require('gulp-concat'),
     imagemin    = require('gulp-imagemin'),
     jslint      = require('gulp-jslint'),
@@ -95,14 +96,21 @@ gulp.task('backendScripts', function () {
 });
 
 
+/* Clean Images task
+------------------------------------- */
+gulp.task('cleanImages', function () {
+    return gulp.src(assetsDir + 'images', {read: false})
+        .pipe(clean());
+});
+
+
 /* Images Task
 ------------------------------------- */
-gulp.task('images', function () {
+gulp.task('imagemin', ['cleanImages'], function () {
     gulp.src(srcDir + 'images/**/*.{png,gif,jpg,jpeg}')
         .pipe(imagemin())
-        .pipe(gulp.dest(assetsDir + 'images/'))
-        .pipe(livereload());
-})
+        .pipe(gulp.dest(assetsDir + 'images/'));
+});
 
 
 /* Watch Task
@@ -113,7 +121,6 @@ gulp.task('watch', function () {
     gulp.watch(srcDir + 'scss/**/*.scss', ['sass']);
     gulp.watch(srcDir + 'js/frontend/**/*.js', ['frontendScripts']);
     gulp.watch(srcDir + 'js/backend/**/*.js', ['backendScripts']);
-    gulp.watch(srcDir + 'images/**/*.{png,gif,jpg,jpeg}', ['images']);
     gulp.watch(['**/*.php']).on('change', function (file) {
         server.changed(file.path);
     });
@@ -122,4 +129,9 @@ gulp.task('watch', function () {
 
 /* Default Task
 ------------------------------------- */
-gulp.task('default', ['sass', 'modernizr', 'frontendScripts', 'backendScripts', 'images', 'watch']);
+gulp.task('default', ['sass', 'modernizr', 'frontendScripts', 'backendScripts', 'imagemin', 'watch']);
+
+
+/* Images Task
+------------------------------------- */
+gulp.task('images', ['imagemin']);
