@@ -22,7 +22,8 @@ and Blueprint http://www.blueprintcss.org/
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Normalize
+0.1 Normalize
+1.x Configuration
 2.0 Typography
 3.0 Elements
 4.0 Forms
@@ -42,14 +43,16 @@ and Blueprint http://www.blueprintcss.org/
 	12.1 Captions
 	12.2 Galleries
 --------------------------------------------------------------*/
-/* Neat 1.7.0 http://neat.bourbon.io Copyright 2012-2014 thoughtbot, inc. MIT License */
+/* 0.1 Normalize
+------------------------------------- */
 @import url(assets/bower_components/normalize.css/normalize.css);
+/* 1.4 Neat (Grid System)
+------------------------------------- */
+/* Neat 1.7.0 http://neat.bourbon.io Copyright 2012-2014 thoughtbot, inc. MIT License */
 html { box-sizing: border-box; }
 
 *, *:before, *:after { box-sizing: inherit; }
 
-/* 1.0 Normalize
-------------------------------------- */
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/

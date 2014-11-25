@@ -24,7 +24,8 @@ and Blueprint http://www.blueprintcss.org/
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-1.0 Normalize
+0.1 Normalize
+1.x Configuration
 2.0 Typography
 3.0 Elements
 4.0 Forms
@@ -45,30 +46,30 @@ and Blueprint http://www.blueprintcss.org/
 	12.2 Galleries
 --------------------------------------------------------------*/
 
-// 0.1 Variables
+/* 0.1 Normalize
+------------------------------------- */
+@import "assets/bower_components/normalize.css/normalize.css";
+
+// 1.1 Variables
 // -------------------------------------
 @import "config/config";
 
 
-// 0.2 Mixins
+// 1.2 Mixins
 // -------------------------------------
 @import "mixins/mixins";
 
 
-// 0.3 Bourbon
+// 1.3 Bourbon
 // -------------------------------------
 @import "bourbon/dist/bourbon";
 
 
-// 0.4 Neat (Grid System)
-// -------------------------------------
+/* 1.4 Neat (Grid System)
+------------------------------------- */
 @import "grid/neat-settings"; // this are the settings to overwrite the neat defaults
 @import "neat/app/assets/stylesheets/neat"; // the neat grid system
 
-
-/* 1.0 Normalize
-------------------------------------- */
-@import "assets/bower_components/normalize.css/normalize.css";
 
 /*--------------------------------------------------------------
 2.0 Typography
