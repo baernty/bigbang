@@ -12,6 +12,7 @@ Tags:
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
+
  bigbang is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
 
 Resetting and rebuilding styles have been helped along thanks to the fine work of
@@ -23,10 +24,19 @@ and Blueprint http://www.blueprintcss.org/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 0.1 Normalize
-1.x Configuration
+1.x Configuration, Mixins, Bourbon, ...
 2.0 Typography
+    2.1 Typo Common
+    2.2 Headings
+    2.3 Copy
 3.0 Elements
+    3.1 Elements Common
+    3.2 Lists
+    3.3 Tables
 4.0 Forms
+    4.1 Form Elements Common
+    4.2 Buttons
+    4.3 Fields
 5.0 Navigation
 	5.1 Links
 	5.2 Menus
@@ -40,247 +50,524 @@ and Blueprint http://www.blueprintcss.org/
 	10.3 Comments
 11.0 Infinite scroll
 12.0 Media
-	12.1 Captions
-	12.2 Galleries
+    12.1 Media Common
+	12.2 Captions
+	12.3 Galleries
 --------------------------------------------------------------*/
 /* 0.1 Normalize
 ------------------------------------- */
 @import url(assets/bower_components/normalize.css/normalize.css);
 /* 1.4 Neat (Grid System)
 ------------------------------------- */
-/* Neat 1.7.0 http://neat.bourbon.io Copyright 2012-2014 thoughtbot, inc. MIT License */
-html { box-sizing: border-box; }
+/* Neat 1.7.0
+ * http://neat.bourbon.io
+ * Copyright 2012-2014 thoughtbot, inc.
+ * MIT License */
+html {
+  box-sizing: border-box; }
 
-*, *:before, *:after { box-sizing: inherit; }
+*, *:before, *:after {
+  box-sizing: inherit; }
 
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/
-body, button, input, select, textarea { color: #404040; font-family: sans-serif; font-size: 16px; font-size: 1rem; line-height: 1.5; }
+/* 2.1 Typo Common
+------------------------------------- */
+body,
+button,
+input,
+select,
+textarea {
+  color: #404040;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5; }
 
-h1, h2, h3, h4, h5, h6 { clear: both; }
+/* 2.2 Headings
+------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  clear: both; }
 
-p { margin-bottom: 1.5em; }
+/* 2.3 Copy
+------------------------------------- */
+p {
+  margin-bottom: 1.5em; }
 
-b, strong { font-weight: bold; }
+b, strong {
+  font-weight: bold; }
 
-dfn, cite, em, i { font-style: italic; }
+dfn, cite, em, i {
+  font-style: italic; }
 
-blockquote { margin: 0 1.5em; }
+blockquote {
+  margin: 0 1.5em; }
 
-address { margin: 0 0 1.5em; }
+address {
+  margin: 0 0 1.5em; }
 
-pre { background: #eee; font-family: "Courier 10 Pitch", Courier, monospace; font-size: 15px; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.6em; max-width: 100%; overflow: auto; padding: 1.6em; }
+pre {
+  background: #eee;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em; }
 
-code, kbd, tt, var { font-size: 15px; font-size: 0.9375rem; font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; }
+code, kbd, tt, var {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; }
 
-abbr, acronym { border-bottom: 1px dotted #666; cursor: help; }
+abbr, acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help; }
 
-mark, ins { background: #fff9c0; text-decoration: none; }
+mark, ins {
+  background: #fff9c0;
+  text-decoration: none; }
 
-sup, sub { font-size: 75%; height: 0; line-height: 0; position: relative; vertical-align: baseline; }
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
 
-sup { bottom: 1ex; }
+sup {
+  bottom: 1ex; }
 
-sub { top: .5ex; }
+sub {
+  top: .5ex; }
 
-small { font-size: 75%; }
+small {
+  font-size: 75%; }
 
-big { font-size: 125%; }
+big {
+  font-size: 125%; }
 
 /*--------------------------------------------------------------
 3.0 Elements
 --------------------------------------------------------------*/
-hr { background-color: #ccc; border: 0; height: 1px; margin-bottom: 1.5em; }
+/* 3.1 Elements Common
+------------------------------------- */
+hr {
+  background-color: #ccc;
+  border: 0;
+  height: 1px;
+  margin-bottom: 1.5em; }
 
-ul, ol { margin: 0 0 1.5em 3em; }
+img {
+  height: auto;
+  max-width: 100%; }
 
-ul { list-style: disc; }
+figure {
+  margin: 0; }
 
-ol { list-style: decimal; }
+/* 3.2 Lists
+------------------------------------- */
+ul, ol {
+  margin: 0 0 1.5em 3em; }
 
-li > ul, li > ol { margin-bottom: 0; margin-left: 1.5em; }
+ul {
+  list-style: disc; }
 
-dt { font-weight: bold; }
+ol {
+  list-style: decimal; }
 
-dd { margin: 0 1.5em 1.5em; }
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 1.5em; }
 
-img { height: auto; /* Make sure images are scaled correctly. */ max-width: 100%; /* Adhere to container width. */ }
+dt {
+  font-weight: bold; }
 
-figure { margin: 0; }
+dd {
+  margin: 0 1.5em 1.5em; }
 
-table { margin: 0 0 1.5em; width: 100%; }
+/* 3.3 Tables
+------------------------------------- */
+table {
+  margin: 0 0 1.5em;
+  width: 100%; }
 
-th { font-weight: bold; }
+th {
+  font-weight: bold; }
 
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
-button, input, select, textarea { font-size: 100%; /* Corrects font size not being inherited in all browsers */ margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */ vertical-align: baseline; /* Improves appearance and consistency in all browsers */ }
+/* 4.1 Form Elements Common
+------------------------------------- */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline; }
 
-button, input[type="button"], input[type="reset"], input[type="submit"] { border: 1px solid; border-color: #ccc #ccc #bbb; border-radius: 3px; background: #e6e6e6; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05); color: rgba(0, 0, 0, 0.8); cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */ -webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */ font-size: 12px; font-size: 0.75rem; line-height: 1; padding: .6em 1em .4em; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
+/* 4.2 Buttons
+------------------------------------- */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border: 1px solid;
+  border-color: #ccc;
+  border-radius: 3px;
+  background: #e6e6e6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  -webkit-appearance: button;
+  font-size: 12px;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: .6em 1em .4em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
 
-button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover { border-color: #ccc #bbb #aaa; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  border-color: #ccc;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
 
-button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, button:active, input[type="button"]:active, input[type="reset"]:active, input[type="submit"]:active { border-color: #aaa #bbb #bbb; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15); }
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  border-color: #aaa;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15); }
 
-input[type="checkbox"], input[type="radio"] { padding: 0; /* Addresses excess padding in IE8/9 */ }
+/* 4.3 Fields
+------------------------------------- */
+input[type="checkbox"],
+input[type="radio"] {
+  padding: 0; }
 
-input[type="search"] { -webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */ box-sizing: content-box; }
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box; }
 
-input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */ -webkit-appearance: none; }
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
 
-button::-moz-focus-inner, input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */ border: 0; padding: 0; }
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
 
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], textarea { color: #666; border: 1px solid #ccc; border-radius: 3px; }
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 3px; }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, textarea:focus { color: #111; }
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  color: #111; }
 
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"] { padding: 3px; }
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+  padding: 3px; }
 
-textarea { overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */ padding-left: 3px; vertical-align: top; /* Improves readability and alignment in all browsers */ width: 100%; }
+textarea {
+  overflow: auto;
+  padding-left: 3px;
+  vertical-align: top;
+  width: 100%; }
 
 /*--------------------------------------------------------------
 5.0 Navigation
 --------------------------------------------------------------*/
-/*--------------------------------------------------------------
-5.1 Links
---------------------------------------------------------------*/
-a { color: royalblue; }
-a:visited { color: purple; }
-a:hover, a:focus, a:active { color: midnightblue; }
+/* 5.1 Links
+------------------------------------- */
+a {
+  color: royalblue; }
+  a:visited {
+    color: purple; }
+  a:hover, a:focus, a:active {
+    color: midnightblue; }
 
-/*--------------------------------------------------------------
-5.2 Menus
---------------------------------------------------------------*/
-.main-navigation { clear: both; display: block; float: left; width: 100%; }
-.main-navigation ul { list-style: none; margin: 0; padding-left: 0; }
-.main-navigation ul ul { box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2); float: left; position: absolute; top: 1.5em; left: -999em; z-index: 99999; }
-.main-navigation ul ul ul { left: -999em; top: 0; }
-.main-navigation ul ul li:hover > ul { left: 100%; }
-.main-navigation ul ul a { width: 200px; }
-.main-navigation ul li:hover > ul { left: auto; }
-.main-navigation li { float: left; position: relative; }
-.main-navigation a { display: block; text-decoration: none; }
+/* 5.2 Menus
+------------------------------------- */
+.main-navigation {
+  clear: both;
+  display: block;
+  float: left;
+  width: 100%; }
+  .main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0; }
+    .main-navigation ul ul {
+      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+      float: left;
+      position: absolute;
+      top: 1.5em;
+      left: -999em;
+      z-index: 99999; }
+      .main-navigation ul ul ul {
+        left: -999em;
+        top: 0; }
+      .main-navigation ul ul li:hover > ul {
+        left: 100%; }
+      .main-navigation ul ul a {
+        width: 200px; }
+    .main-navigation ul li:hover > ul {
+      left: auto; }
+  .main-navigation li {
+    float: left;
+    position: relative; }
+  .main-navigation a {
+    display: block;
+    text-decoration: none; }
 
 /* Small menu */
-.menu-toggle { display: none; }
+.menu-toggle {
+  display: none; }
 
-@media screen and (max-width: 600px) { .menu-toggle, .main-navigation.toggled .nav-menu { display: block; }
-  .main-navigation ul { display: none; } }
-.site-main .comment-navigation, .site-main .paging-navigation, .site-main .post-navigation { margin: 0 0 1.5em; overflow: hidden; }
+@media screen and (max-width: 600px) {
+  .menu-toggle,
+  .main-navigation.toggled .nav-menu {
+    display: block; }
 
-.comment-navigation .nav-previous, .paging-navigation .nav-previous, .post-navigation .nav-previous { float: left; width: 50%; }
+  .main-navigation ul {
+    display: none; } }
+.site-main .comment-navigation,
+.site-main .paging-navigation,
+.site-main .post-navigation {
+  margin: 0 0 1.5em;
+  overflow: hidden; }
 
-.comment-navigation .nav-next, .paging-navigation .nav-next, .post-navigation .nav-next { float: right; text-align: right; width: 50%; }
+.comment-navigation .nav-previous,
+.paging-navigation .nav-previous,
+.post-navigation .nav-previous {
+  float: left;
+  width: 50%; }
+
+.comment-navigation .nav-next,
+.paging-navigation .nav-next,
+.post-navigation .nav-next {
+  float: right;
+  text-align: right;
+  width: 50%; }
 
 /*--------------------------------------------------------------
 6.0 Accessibility
 --------------------------------------------------------------*/
-/* Text meant only for screen readers */
-.screen-reader-text { clip: rect(1px, 1px, 1px, 1px); position: absolute !important; height: 1px; width: 1px; overflow: hidden; }
-.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus { background-color: #f1f1f1; border-radius: 3px; box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6); clip: auto !important; color: #21759b; display: block; font-size: 14px; font-size: 0.875rem; font-weight: bold; height: auto; left: 5px; line-height: normal; padding: 15px 23px 14px; text-decoration: none; top: 5px; width: auto; z-index: 100000; /* Above WP toolbar */ }
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden; }
+  .screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar */ }
 
 /*--------------------------------------------------------------
 7.0 Alignments
 --------------------------------------------------------------*/
-.alignleft { display: inline; float: left; margin-right: 1.5em; }
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 1.5em; }
 
-.alignright { display: inline; float: right; margin-left: 1.5em; }
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 1.5em; }
 
-.aligncenter { display: block; margin-right: auto; margin-left: auto; }
+.aligncenter {
+  display: block;
+  margin-right: auto;
+  margin-left: auto; }
 
 /*--------------------------------------------------------------
 8.0 Clearings
 --------------------------------------------------------------*/
-.clear:after, .entry-content:after, .comment-content:after, .site-header:after, .site-content:after, .site-footer:after { content: ""; display: table; clear: both; }
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
+  content: "";
+  display: table;
+  clear: both; }
 
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
-.widget { margin: 0 0 1.5em; /* Make sure select elements fit in widgets */ }
-.widget select { max-width: 100%; }
+.widget {
+  margin: 0 0 1.5em; }
+  .widget select {
+    max-width: 100%; }
 
 /* Search widget */
-.widget_search .search-submit { display: none; }
+.widget_search .search-submit {
+  display: none; }
 
 /*--------------------------------------------------------------
 10.0 Content
 --------------------------------------------------------------*/
-/*--------------------------------------------------------------
-10.1 Posts and pages
---------------------------------------------------------------*/
-.sticky { display: block; }
+/* 10.1 Posts and pages
+------------------------------------- */
+.sticky {
+  display: block; }
 
-.hentry { margin: 0 0 1.5em; }
+.hentry {
+  margin: 0 0 1.5em; }
 
-.byline, .updated:not(.published) { display: none; }
+.byline,
+.updated:not(.published) {
+  display: none; }
 
-.single .byline, .group-blog .byline { display: inline; }
+.single .byline,
+.group-blog .byline {
+  display: inline; }
 
-.page-content, .entry-content, .entry-summary { margin: 1.5em 0 0; }
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: 1.5em 0 0; }
 
-.page-links { clear: both; margin: 0 0 1.5em; }
+.page-links {
+  clear: both;
+  margin: 0 0 1.5em; }
 
-/*--------------------------------------------------------------
-10.2 Asides
---------------------------------------------------------------*/
-.blog .format-aside .entry-title, .archive .format-aside .entry-title { display: none; }
+/* 10.2 Asides
+------------------------------------- */
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
+  display: none; }
 
-/*--------------------------------------------------------------
-10.3 Comments
---------------------------------------------------------------*/
-.comment-content a { word-wrap: break-word; }
+/* 10.3 Comments
+------------------------------------- */
+.comment-content a {
+  word-wrap: break-word; }
 
-.bypostauthor { display: block; }
+.bypostauthor {
+  display: block; }
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
 --------------------------------------------------------------*/
-/* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .paging-navigation, .infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */ display: none; }
+.infinite-scroll .paging-navigation,
+.infinite-scroll.neverending .site-footer {
+  display: none; }
 
-/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
-.infinity-end.neverending .site-footer { display: block; }
+.infinity-end.neverending .site-footer {
+  display: block; }
 
 /*--------------------------------------------------------------
 12.0 Media
 --------------------------------------------------------------*/
-.page-content img.wp-smiley, .entry-content img.wp-smiley, .comment-content img.wp-smiley { border: none; margin-bottom: 0; margin-top: 0; padding: 0; }
+/* 12.1 Media Common
+------------------------------------- */
+.page-content img.wp-smiley,
+.entry-content img.wp-smiley,
+.comment-content img.wp-smiley {
+  border: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0; }
 
 /* Make sure embeds and iframes fit their containers */
-embed, iframe, object { max-width: 100%; }
+embed,
+iframe,
+object {
+  max-width: 100%; }
 
-/*--------------------------------------------------------------
-12.1 Captions
---------------------------------------------------------------*/
-.wp-caption { margin-bottom: 1.5em; max-width: 100%; }
-.wp-caption img[class*="wp-image-"] { display: block; margin-right: auto; margin-left: auto; }
-.wp-caption .wp-caption-text { margin: 0.8075em 0; }
+/* 12.2 Captions
+------------------------------------- */
+.wp-caption {
+  margin-bottom: 1.5em;
+  max-width: 100%; }
+  .wp-caption img[class*="wp-image-"] {
+    display: block;
+    margin-right: auto;
+    margin-left: auto; }
+  .wp-caption .wp-caption-text {
+    margin: 0.8075em 0; }
 
-.wp-caption-text { text-align: center; }
+.wp-caption-text {
+  text-align: center; }
 
-/*--------------------------------------------------------------
-12.2 Galleries
---------------------------------------------------------------*/
-.gallery { margin-bottom: 1.5em; }
+/* 12.3 Galleries
+------------------------------------- */
+.gallery {
+  margin-bottom: 1.5em; }
 
-.gallery-item { display: inline-block; text-align: center; vertical-align: top; width: 100%; }
+.gallery-item {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  width: 100%; }
 
-.gallery-columns-2 .gallery-item { max-width: 50%; }
+.gallery-columns-2 .gallery-item {
+  max-width: 50%; }
 
-.gallery-columns-3 .gallery-item { max-width: 33.33%; }
+.gallery-columns-3 .gallery-item {
+  max-width: 33.33%; }
 
-.gallery-columns-4 .gallery-item { max-width: 25%; }
+.gallery-columns-4 .gallery-item {
+  max-width: 25%; }
 
-.gallery-columns-5 .gallery-item { max-width: 20%; }
+.gallery-columns-5 .gallery-item {
+  max-width: 20%; }
 
-.gallery-columns-6 .gallery-item { max-width: 16.66%; }
+.gallery-columns-6 .gallery-item {
+  max-width: 16.66%; }
 
-.gallery-columns-7 .gallery-item { max-width: 14.28%; }
+.gallery-columns-7 .gallery-item {
+  max-width: 14.28%; }
 
-.gallery-columns-8 .gallery-item { max-width: 12.5%; }
+.gallery-columns-8 .gallery-item {
+  max-width: 12.5%; }
 
-.gallery-columns-9 .gallery-item { max-width: 11.11%; }
+.gallery-columns-9 .gallery-item {
+  max-width: 11.11%; }
 
-.gallery-caption { display: block; }
+.gallery-caption {
+  display: block; }

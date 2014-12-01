@@ -25,10 +25,19 @@ and Blueprint http://www.blueprintcss.org/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 0.1 Normalize
-1.x Configuration
+1.x Configuration, Mixins, Bourbon, ...
 2.0 Typography
+    2.1 Typo Common
+    2.2 Headings
+    2.3 Copy
 3.0 Elements
+    3.1 Elements Common
+    3.2 Lists
+    3.3 Tables
 4.0 Forms
+    4.1 Form Elements Common
+    4.2 Buttons
+    4.3 Fields
 5.0 Navigation
 	5.1 Links
 	5.2 Menus
@@ -42,8 +51,9 @@ and Blueprint http://www.blueprintcss.org/
 	10.3 Comments
 11.0 Infinite scroll
 12.0 Media
-	12.1 Captions
-	12.2 Galleries
+    12.1 Media Common
+	12.2 Captions
+	12.3 Galleries
 --------------------------------------------------------------*/
 
 /* 0.1 Normalize
@@ -109,7 +119,7 @@ and Blueprint http://www.blueprintcss.org/
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
-@import "site/secondary/widgets";
+@import "site/widgets";
 
 /*--------------------------------------------------------------
 10.0 Content
