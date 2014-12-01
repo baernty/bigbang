@@ -1,7 +1,7 @@
 /* Modules
 ------------------------------------- */
 var gulp        = require('gulp'),
-    clean       = require('gulp-clean'),
+    clean       = require('gulp-rimraf'),
     concat      = require('gulp-concat'),
     imagemin    = require('gulp-imagemin'),
     jslint      = require('gulp-jslint'),
