@@ -43,7 +43,7 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	 * @param string $sep Optional separator.
 	 * @return string The filtered title.
 	 */
-	function _s_wp_title( $title, $sep ) {
+	function bb_wp_title( $title, $sep ) {
 		if ( is_feed() ) {
 			return $title;
 		}
@@ -66,7 +66,7 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) :
 
 		return $title;
 	}
-	add_filter( 'wp_title', '_s_wp_title', 10, 2 );
+	add_filter( 'wp_title', 'bb_wp_title', 10, 2 );
 endif;
 
 if ( ! function_exists( '_wp_render_title_tag' ) ) :
@@ -76,10 +76,10 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	 * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
 	 * @todo Remove this function when WordPress 4.3 is released.
 	 */
-	function _s_render_title() {
+	function bb_render_title() {
 		echo '<title>' . wp_title( '|', false, 'right' ) . "</title>\n";
 	}
-	add_action( 'wp_head', '_s_render_title' );
+	add_action( 'wp_head', 'bb_render_title' );
 endif;
 
 /**
