@@ -29,7 +29,7 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'bigbang' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php bb_primary_nav(); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 

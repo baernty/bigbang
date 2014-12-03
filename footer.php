@@ -10,6 +10,8 @@
 
 	</div><!-- #content -->
 
+    <?php bb_secondary_nav(); ?>
+
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'bigbang' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'bigbang' ), 'WordPress' ); ?></a>

@@ -7,6 +7,83 @@
  * @package bigbang
  */
 
+/*
+|--------------------------------------------------------------------------
+| Menus
+|--------------------------------------------------------------------------
+*/
+/* Primary Menu
+------------------------------------- */
+if (!function_exists('bb_primary_nav'))
+{
+    /**
+     * Generate your primary menu and feel free to overwrite/extend the sensible defaults
+     *
+     * @param  array  $args Arguments
+     * @return string       Menu
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_primary_nav($args = array())
+    {
+        $defaults = array(
+            'menu'           => 'primary_nav',
+            'theme_location' => 'primary_nav',
+            'container'      => false,
+            'menu_class'     => 'menu primary-nav',
+            'fallback_cb'    => 'bb_primary_nav_fallback',
+        );
+
+        $args = array_merge($defaults, $args);
+
+        wp_nav_menu($args);
+    }
+}
+
+if (!function_exists('bb_primary_nav_fallback'))
+{
+    /**
+     * Callback function if no primary menu exists
+     *
+     * @return string Generated menu
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_primary_nav_fallback()
+    {
+        wp_page_menu(array('show_home' => true, 'menu_class' => 'menu primary-nav'));
+    }
+}
+
+/* Secondary Menu
+------------------------------------- */
+if (!function_exists('bb_secondary_nav'))
+{
+    /**
+     * Generate your secondary menu and feel free to overwrite/extend the sensible defaults
+     *
+     * @param  array  $args Arguments
+     * @return string       Generated menu
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_secondary_nav($args = array())
+    {
+        $defaults = array(
+            'menu'           => 'secondary_nav',
+            'theme_location' => 'secondary_nav',
+            'container'      => false,
+            'menu_class'     => 'menu secondary-nav',
+            'fallback_cb'    => false,
+        );
+
+        $args = array_merge($defaults, $args);
+
+        wp_nav_menu($args);
+    }
+}
+
+
 if ( ! function_exists( 'bb_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
