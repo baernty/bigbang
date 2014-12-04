@@ -84,121 +84,182 @@ if (!function_exists('bb_secondary_nav'))
 }
 
 
-if ( ! function_exists( 'bb_paging_nav' ) ) :
-/**
- * Display navigation to next/previous set of posts when applicable.
- */
-function bb_paging_nav() {
-	// Don't print empty markup if there's only one page.
-	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
-		return;
-	}
-	?>
-	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'bigbang' ); ?></h1>
-		<div class="nav-links">
 
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bigbang' ) ); ?></div>
-			<?php endif; ?>
+/*
+|--------------------------------------------------------------------------
+| Paging nav
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('bb_paging_nav'))
+{
+    /**
+     * Display navigation to next/previous set of posts when applicable
+     *
+     * @return string HTML
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_paging_nav()
+    {
+        // Don't print empty markup if there's only one page
+        if ($GLOBALS['wp_query']->max_num_pages < 2) return;
+        ?>
 
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bigbang' ) ); ?></div>
-			<?php endif; ?>
+        <nav class="navigation paging-navigation" role="navigation">
+            <h1 class="screen-reader-text"><?php _e('Posts navigation', 'bigbang'); ?></h1>
+            <div class="nav-links">
+                <?php if (get_next_posts_link()) : ?>
+                    <div class="nav-previous">
+                        <?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'bigbang' ) ); ?>
+                    </div>
+                <?php endif; ?>
 
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+                <?php if (get_previous_posts_link()) : ?>
+                    <div class="nav-next">
+                        <?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'bigbang' ) ); ?>
+                    </div>
+                <?php endif; ?>
+            </div><!-- .nav-links -->
+        </nav><!-- .navigation -->
+
+        <?php
+    }
 }
-endif;
 
-if ( ! function_exists( 'bb_post_nav' ) ) :
-/**
- * Display navigation to next/previous post when applicable.
- */
-function bb_post_nav() {
-	// Don't print empty markup if there's nowhere to navigate.
-	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
 
-	if ( ! $next && ! $previous ) {
-		return;
-	}
-	?>
-	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'bigbang' ); ?></h1>
-		<div class="nav-links">
-			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'bigbang' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'bigbang' ) );
-			?>
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
+
+/*
+|--------------------------------------------------------------------------
+| Posts nav
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('bb_post_nav'))
+{
+    /**
+     * Display navigation to next/previous post when applicable
+     *
+     * @return string HTML
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_post_nav()
+    {
+        // Don't print empty markup if there's nowhere to navigate
+        $previous = (is_attachment()) ? get_post( get_post()->post_parent ) : get_adjacent_post(false, '', true);
+        $next     = get_adjacent_post(false, '', false);
+
+        if (!$next && !$previous) return;
+        ?>
+
+        <nav class="navigation post-navigation" role="navigation">
+            <h1 class="screen-reader-text"><?php _e('Post navigation', 'bigbang'); ?></h1>
+            <div class="nav-links">
+                <?php
+                    previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'bigbang' ) );
+                    next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'bigbang' ) );
+                ?>
+            </div><!-- .nav-links -->
+        </nav><!-- .navigation -->
+
+        <?php
+    }
 }
-endif;
 
-if ( ! function_exists( 'bb_posted_on' ) ) :
-/**
- * Prints HTML with meta information for the current post-date/time and author.
- */
-function bb_posted_on() {
-	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-	}
 
-	$time_string = sprintf( $time_string,
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
-	);
 
-	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'bigbang' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
+/*
+|--------------------------------------------------------------------------
+| Posted on
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('bb_posted_on'))
+{
+    /**
+     * Prints HTML with meta information for the current post-date/time and author
+     *
+     * @return strin HTML
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_posted_on()
+    {
+        $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
-	$byline = sprintf(
-		_x( 'by %s', 'post author', 'bigbang' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-	);
+        if (get_the_time('U') !== get_the_modified_time('U'))
+        {
+            $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+        }
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+        $time_string = sprintf($time_string,
+            esc_attr(get_the_date('c')),
+            esc_html(get_the_date()),
+            esc_attr(get_the_modified_date('c')),
+            esc_html(get_the_modified_date())
+        );
 
+        $posted_on = sprintf(
+            _x('Posted on %s', 'post date', 'bigbang'),
+            '<a href="' . esc_url(get_permalink()) . '" rel="bookmark">' . $time_string . '</a>'
+        );
+
+        $byline = sprintf(
+            _x('by %s', 'post author', 'bigbang'),
+            '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+        );
+
+        echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+    }
 }
-endif;
 
-if ( ! function_exists( 'bb_entry_footer' ) ) :
-/**
- * Prints HTML with meta information for the categories, tags and comments.
- */
-function bb_entry_footer() {
-	// Hide category and tag text for pages.
-	if ( 'post' == get_post_type() ) {
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'bigbang' ) );
-		if ( $categories_list && bb_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'bigbang' ) . '</span>', $categories_list );
-		}
 
-		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'bigbang' ) );
-		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'bigbang' ) . '</span>', $tags_list );
-		}
-	}
 
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', 'bigbang' ), __( '1 Comment', 'bigbang' ), __( '% Comments', 'bigbang' ) );
-		echo '</span>';
-	}
+/*
+|--------------------------------------------------------------------------
+| Article Footer
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('bb_entry_footer'))
+{
+    /**
+     * Prints HTML with meta information for the categories, tags and comments
+     * @return string HTML Output
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_entry_footer()
+    {
+        // Hide category and tag text for pages.
+        if ('post' == get_post_type())
+        {
+            // Categories
+            $categories_list = get_the_category_list(__(', ', 'bigbang')); // Translators, there's a space after the comma
 
-	edit_post_link( __( 'Edit', 'bigbang' ), '<span class="edit-link">', '</span>' );
+            if ($categories_list && bb_categorized_blog())
+            {
+                printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'bigbang' ) . '</span>', $categories_list );
+            }
+
+            // Tags
+            $tags_list = get_the_tag_list( '', __( ', ', 'bigbang' ) ); // Translators, there's a space after the comma
+
+            if ( $tags_list )
+            {
+                printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'bigbang' ) . '</span>', $tags_list );
+            }
+        }
+
+        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) )
+        {
+            echo '<span class="comments-link">';
+            comments_popup_link( __( 'Leave a comment', 'bigbang' ), __( '1 Comment', 'bigbang' ), __( '% Comments', 'bigbang' ) );
+            echo '</span>';
+        }
+
+        edit_post_link( __( 'Edit', 'bigbang' ), '<span class="edit-link">', '</span>' );
+    }
 }
-endif;
+
+
 
 if ( ! function_exists( 'the_archive_title' ) ) :
 /**
