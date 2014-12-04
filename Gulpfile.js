@@ -7,7 +7,9 @@ var gulp        = require('gulp'),
     jslint      = require('gulp-jslint'),
     livereload  = require('gulp-livereload'),
     prefix      = require('gulp-autoprefixer'),
+    plumber     = require('gulp-plumber'),
     sass        = require('gulp-ruby-sass'),
+    sourcemaps  = require('gulp-sourcemaps'),
     uglify      = require('gulp-uglify');
 
 
@@ -21,15 +23,17 @@ var assetsDir      = 'assets/',
 /* Sass Task
 ------------------------------------- */
 gulp.task('sass', function () {
-    gulp.src(srcDir + 'scss/style.scss')
-        .pipe(sass({
-            sourcemapPath: './assets',
-            loadPath: [bowerDir, srcDir + 'scss/']
-        }))
+    return sass(srcDir + 'scss/style.scss', {
+        sourcemap: true,
+        loadPath: [bowerDir, srcDir + 'scss/']
+
+    })
+        .pipe(plumber())
         .pipe(prefix({
             browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1'],
             cascade: true
         }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('.'))
         .pipe(livereload());
 });
