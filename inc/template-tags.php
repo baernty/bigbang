@@ -261,138 +261,208 @@ if (!function_exists('bb_entry_footer'))
 
 
 
-if ( ! function_exists( 'the_archive_title' ) ) :
-/**
- * Shim for `the_archive_title()`.
- *
- * Display the archive title based on the queried object.
- *
- * @todo Remove this function when WordPress 4.3 is released.
- *
- * @param string $before Optional. Content to prepend to the title. Default empty.
- * @param string $after  Optional. Content to append to the title. Default empty.
- */
-function the_archive_title( $before = '', $after = '' ) {
-	if ( is_category() ) {
-		$title = sprintf( __( 'Category: %s', 'bigbang' ), single_cat_title( '', false ) );
-	} elseif ( is_tag() ) {
-		$title = sprintf( __( 'Tag: %s', 'bigbang' ), single_tag_title( '', false ) );
-	} elseif ( is_author() ) {
-		$title = sprintf( __( 'Author: %s', 'bigbang' ), '<span class="vcard">' . get_the_author() . '</span>' );
-	} elseif ( is_year() ) {
-		$title = sprintf( __( 'Year: %s', 'bigbang' ), get_the_date( _x( 'Y', 'yearly archives date format', 'bigbang' ) ) );
-	} elseif ( is_month() ) {
-		$title = sprintf( __( 'Month: %s', 'bigbang' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bigbang' ) ) );
-	} elseif ( is_day() ) {
-		$title = sprintf( __( 'Day: %s', 'bigbang' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'bigbang' ) ) );
-	} elseif ( is_tax( 'post_format', 'post-format-aside' ) ) {
-		$title = _x( 'Asides', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
-		$title = _x( 'Galleries', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
-		$title = _x( 'Images', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
-		$title = _x( 'Videos', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
-		$title = _x( 'Quotes', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
-		$title = _x( 'Links', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
-		$title = _x( 'Statuses', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
-		$title = _x( 'Audio', 'post format archive title', 'bigbang' );
-	} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
-		$title = _x( 'Chats', 'post format archive title', 'bigbang' );
-	} elseif ( is_post_type_archive() ) {
-		$title = sprintf( __( 'Archives: %s', 'bigbang' ), post_type_archive_title( '', false ) );
-	} elseif ( is_tax() ) {
-		$tax = get_taxonomy( get_queried_object()->taxonomy );
-		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-		$title = sprintf( __( '%1$s: %2$s', 'bigbang' ), $tax->labels->singular_name, single_term_title( '', false ) );
-	} else {
-		$title = __( 'Archives', 'bigbang' );
-	}
+/*
+|--------------------------------------------------------------------------
+| The Archive title
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('the_archive_title'))
+{
+    /**
+     * Shim for 'the_archive_title()'
+     * Display the archive title base on the queried object
+     * TODO: Remove this function when Wordpress 4.3 is released
+     *
+     * @param  string $before Optional. Content to prepend to the title. Default empty.
+     * @param  string $after  Optional. Content to append to the title. Default empty.
+     * @return string         Title
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function the_archive_title($before = '', $after = '')
+    {
+        if (is_category())
+        {
+            $title = sprintf( __('Category: %s', 'bigbang'), single_cat_title('', false));
+        }
+        elseif (is_tag())
+        {
+            $title = sprintf(__('Tag: %s', 'bigbang'), single_tag_title('', false));
+        }
+        elseif (is_author())
+        {
+            $title = sprintf(__('Author: %s', 'bigbang'), '<span class="vcard">' . get_the_author() . '</span>' );
+        }
+        elseif (is_year())
+        {
+            $title = sprintf(__('Year: %s', 'bigbang'), get_the_date(_x('Y', 'yearly archives date format', 'bigbang')));
+        }
+        elseif (is_month())
+        {
+            $title = sprintf(__('Month: %s', 'bigbang'), get_the_date(_x('F Y', 'monthly archives date format', 'bigbang')));
+        }
+        elseif (is_day())
+        {
+            $title = sprintf(__('Day: %s', 'bigbang'), get_the_date(_x('F j, Y', 'daily archives date format', 'bigbang')));
+        }
+        elseif (is_tax('post_format', 'post-format-aside'))
+        {
+            $title = _x('Asides', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-gallery'))
+        {
+            $title = _x('Galleries', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-image'))
+        {
+            $title = _x('Images', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-video'))
+        {
+            $title = _x('Videos', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-quote'))
+        {
+            $title = _x('Quotes', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-link'))
+        {
+            $title = _x('Links', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-status'))
+        {
+            $title = _x('Statuses', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-audio'))
+        {
+            $title = _x('Audio', 'post format archive title', 'bigbang');
+        }
+        elseif (is_tax('post_format', 'post-format-chat'))
+        {
+            $title = _x('Chats', 'post format archive title', 'bigbang');
+        }
+        elseif (is_post_type_archive())
+        {
+            $title = sprintf(__('Archives: %s', 'bigbang'), post_type_archive_title('', false));
+        }
+        elseif (is_tax())
+        {
+            $tax = get_taxonomy(get_queried_object()->taxonomy);
+            /* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
+            $title = sprintf(__('%1$s: %2$s', 'bigbang'), $tax->labels->singular_name, single_term_title('', false));
+        }
+        else
+        {
+            $title = __('Archives', 'bigbang');
+        }
 
-	/**
-	 * Filter the archive title.
-	 *
-	 * @param string $title Archive title to be displayed.
-	 */
-	$title = apply_filters( 'get_the_archive_title', $title );
+        $title = apply_filters( 'get_the_archive_title', $title );
 
-	if ( ! empty( $title ) ) {
-		echo $before . $title . $after;
-	}
-}
-endif;
-
-if ( ! function_exists( 'the_archive_description' ) ) :
-/**
- * Shim for `the_archive_description()`.
- *
- * Display category, tag, or term description.
- *
- * @todo Remove this function when WordPress 4.3 is released.
- *
- * @param string $before Optional. Content to prepend to the description. Default empty.
- * @param string $after  Optional. Content to append to the description. Default empty.
- */
-function the_archive_description( $before = '', $after = '' ) {
-	$description = apply_filters( 'get_the_archive_description', term_description() );
-
-	if ( ! empty( $description ) ) {
-		/**
-		 * Filter the archive description.
-		 *
-		 * @see term_description()
-		 *
-		 * @param string $description Archive description to be displayed.
-		 */
-		echo $before . $description . $after;
-	}
-}
-endif;
-
-/**
- * Returns true if a blog has more than 1 category.
- *
- * @return bool
- */
-function bb_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'bb_categories' ) ) ) {
-		// Create an array of all the categories that are attached to posts.
-		$all_the_cool_cats = get_categories( array(
-			'fields'     => 'ids',
-			'hide_empty' => 1,
-
-			// We only need to know if there is more than one category.
-			'number'     => 2,
-		) );
-
-		// Count the number of categories that are attached to the posts.
-		$all_the_cool_cats = count( $all_the_cool_cats );
-
-		set_transient( 'bb_categories', $all_the_cool_cats );
-	}
-
-	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so bb_categorized_blog should return true.
-		return true;
-	} else {
-		// This blog has only 1 category so bb_categorized_blog should return false.
-		return false;
-	}
+        if (!empty($title))
+        {
+            echo $before . $title . $after;
+        }
+    }
 }
 
-/**
- * Flush out the transients used in bb_categorized_blog.
- */
-function bb_category_transient_flusher() {
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
-	}
-	// Like, beat it. Dig?
-	delete_transient( 'bb_categories' );
+
+
+/*
+|--------------------------------------------------------------------------
+| The Archive description
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('the_archive_description'))
+{
+    /**
+     * Shim for `the_archive_description()`
+     * Display category, tag or term description
+     * TODO Remove this function when Wordpress 4.3 is released
+     *
+     * @param  string $before Optional. Content to prepend to the description. Default empty.
+     * @param  string $after  Optional. Content to append to the description. Default empty.
+     * @return string         Archive description
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function the_archive_description($before = '', $after = '')
+    {
+        $description = apply_filters('get_the_archive_description', term_description());
+
+        if (!empty($description))
+        {
+            echo $before . $description . $after;
+        }
+    }
 }
-add_action( 'edit_category', 'bb_category_transient_flusher' );
-add_action( 'save_post',     'bb_category_transient_flusher' );
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Is categorized blog
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('bb_categorized_blog'))
+{
+    /**
+     * Returns true if a blog has more than 1 category
+     *
+     * @return bool
+     * @author Markus Schober
+     * @since  1.0.0
+     */
+    function bb_categorized_blog()
+    {
+        if (false === ($all_the_cool_cats = get_transient('bb_categories')))
+        {
+            $all_the_cool_cats = get_categories(array(
+                'fields'     => 'ids',
+                'hide_empty' => 1,
+                'number'     => 2, // We only need to know if there is more tha one category
+            ));
+
+            $all_the_cool_cats = count($all_the_cool_cats);
+
+            set_transient('bb_categories', $all_the_cool_cats);
+        }
+
+        if ($all_the_cool_cats > 1)
+        {
+            return true; // This blog has more than 1 category so bb_categorized_blog should return true.
+        }
+        else
+        {
+            return false; // This blog has only 1 category so bb_categorized_blog should return false.
+        }
+    }
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Category transient flusher
+|--------------------------------------------------------------------------
+*/
+if (!function_exists('bb_category_transient_flusher'))
+{
+    /**
+     * Flush out the transients used in bb_categorized_blog
+     * @return void
+     * @author Markus Schober
+     * @since  1.0.0.
+     */
+    function bb_category_transient_flusher()
+    {
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        {
+            return;
+        }
+
+        delete_transient('bb_categories');
+    }
+
+    add_action('edit_category', 'bb_category_transient_flusher');
+    add_action('save_post', 'bb_category_transient_flusher');
+}
