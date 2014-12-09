@@ -39,8 +39,8 @@ OR
 For Gulp and bower we need a few things set up. It's easy and should take only five minutes. If you don't know gulp and bower you should give them a try.
 
 1. Install [Node.js](http://nodejs.org) like any other app
-2. Install [Bower](http://bower.io). See the [docs](http://bower.io/#install-bower)
-3. Install [Gulp](http://gulpjs.com). See the [docs]https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started)
+2. Install [Bower](http://bower.io) via your terminal `npm install -g bower`. See the [docs](http://bower.io/#install-bower) for more information.
+3. Install [Gulp](http://gulpjs.com) via your terminal `npm install --global gulp`. See the [docs](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#getting-started)
 
 Congratulations - you have everything to work with these great tools.
 
@@ -53,7 +53,7 @@ Congratulations - you have everything to work with these great tools.
 
 To install these change to your theme directory in your terminal and enter `bower install`.
 
-The last thing are the Gulp modules. In your theme directory enter `npm install`.
+The last thing are the Gulp modules. In your theme directory enter `npm install` and all modules will be installed in the `node_modules` directory.
 
 You're ready to go. Enter `gulp` and begin to work.
 
