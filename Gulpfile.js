@@ -51,6 +51,7 @@ gulp.task('modernizr', function () {
 /* Frontend Scripts Task
 ------------------------------------- */
 gulp.task('frontendScripts', function () {
+    // Your JS files that should be combined and minified. Order it to suit your needs.
     var concatination = [
         bowerDir + 'jquery/dist/jquery.js',
         srcDir + 'js/frontend/navigation.js',
