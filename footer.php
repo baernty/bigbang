@@ -10,7 +10,9 @@
 
 	</div><!-- #content -->
 
-    <?php bb_secondary_nav(); ?>
+    <div class="footer-navigation">
+        <?php bb_secondary_nav(); ?>
+    </div>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
