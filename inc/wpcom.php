@@ -13,17 +13,17 @@
  * @global array $themecolors
  */
 function bb_wpcom_setup() {
-	global $themecolors;
+    global $themecolors;
 
-	// Set theme colors for third party services.
-	if ( ! isset( $themecolors ) ) {
-		$themecolors = array(
-			'bg'     => '',
-			'border' => '',
-			'text'   => '',
-			'link'   => '',
-			'url'    => '',
-		);
-	}
+    // Set theme colors for third party services.
+    if ( ! isset( $themecolors ) ) {
+        $themecolors = array(
+            'bg'     => '',
+            'border' => '',
+            'text'   => '',
+            'link'   => '',
+            'url'    => '',
+        );
+    }
 }
 add_action( 'after_setup_theme', 'bb_wpcom_setup' );

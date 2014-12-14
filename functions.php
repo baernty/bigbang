@@ -27,7 +27,7 @@ if (!defined('BB_VERSION')) define('BB_VERSION', '1.0.0');
  * @since  1.0.0
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 1024; /* pixels */
+    $content_width = 1024; /* pixels */
 }
 
 
