@@ -93,11 +93,11 @@ if (!function_exists('bb_setup_author'))
      * @return void
      */
     function bb_setup_author() {
-    	global $wp_query;
+        global $wp_query;
 
-    	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
-    		$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
-    	}
+        if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
+            $GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
+        }
     }
 
     add_action( 'wp', 'bb_setup_author' );
