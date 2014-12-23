@@ -12,7 +12,7 @@
 | Title tag
 |--------------------------------------------------------------------------
 */
-if (!function_exists('_wp_render_title_tag'))
+if (version_compare($GLOBALS['wp_version'], '4.1', '<'))
 {
     /**
      * Filters wp_title to print a neat <title> tag based on what is being viewed.
@@ -53,23 +53,23 @@ if (!function_exists('_wp_render_title_tag'))
 }
 
 
-if (!function_exists('_wp_render_title_tag'))
-{
-    /**
-     * Title shim for sites older than Wordpress 4.1.
-     * TODO: Remove this function when WordPress 4.3 is released.
-     *
-     * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
-     * @author Markus Schober
-     * @since  1.0.0
-     */
-    function bb_render_title()
-    {
-        echo '<title>' . wp_title('|', false, 'right') . "</title>\n";
-    }
 
-    add_action('wp_head', 'bb_render_title');
+/**
+ * Title shim for sites older than Wordpress 4.1.
+ * TODO: Remove this function when WordPress 4.3 is released.
+ *
+ * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
+ * @author Markus Schober
+ * @since  1.0.0
+ */
+function bb_render_title()
+{
+    ?>
+    <title><?php wp_title( '|', true, 'right' ); ?></title>
+    <?php
 }
+
+add_action('wp_head', 'bb_render_title');
 
 
 
