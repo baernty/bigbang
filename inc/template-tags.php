@@ -12,6 +12,7 @@
 | Menus
 |--------------------------------------------------------------------------
 */
+
 /* Primary Menu
 ------------------------------------- */
 if (!function_exists('bb_primary_nav'))
@@ -54,6 +55,7 @@ if (!function_exists('bb_primary_nav_fallback'))
         wp_page_menu(array('show_home' => true, 'menu_class' => 'menu primary-nav'));
     }
 }
+
 
 /* Secondary Menu
 ------------------------------------- */
