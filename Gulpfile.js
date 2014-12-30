@@ -8,6 +8,7 @@ var gulp        = require('gulp'),
     livereload  = require('gulp-livereload'),
     prefix      = require('gulp-autoprefixer'),
     plumber     = require('gulp-plumber'),
+    rename      = require('gulp-rename'),
     sass        = require('gulp-ruby-sass'),
     sourcemaps  = require('gulp-sourcemaps'),
     uglify      = require('gulp-uglify');
@@ -44,6 +45,7 @@ gulp.task('sass', function () {
 gulp.task('modernizr', function () {
     gulp.src(bowerDir + 'modernizr/modernizr.js')
         .pipe(uglify())
+        .pipe(rename('modernizr-min.js'))
         .pipe(gulp.dest(assetsDir + 'js/'));
 });
 

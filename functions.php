@@ -11,7 +11,7 @@
 |--------------------------------------------------------------------------
 */
 // Theme version
-if (!defined('BB_VERSION')) define('BB_VERSION', '1.0.0');
+if (!defined('BB_VERSION')) define('BB_VERSION', '1.0.5');
 
 
 /*
@@ -198,7 +198,7 @@ if (!function_exists('bb_scripts'))
         /**
          * Let's add modernizr in the head
          */
-        wp_enqueue_script('modernizr', get_template_directory_uri(). '/assets/js/modernizr.js', array(), '2.8.3', false);
+        wp_enqueue_script('modernizr', get_template_directory_uri(). '/assets/js/modernizr-min.js', array(), '2.8.3', false);
 
         /**
          * We add our own version of jquery, minified into one file with our scripts
