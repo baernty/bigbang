@@ -11,7 +11,7 @@
 |--------------------------------------------------------------------------
 */
 // Theme version
-if (!defined('BB_VERSION')) define('BB_VERSION', '1.0.0');
+if (!defined('BB_VERSION')) define('BB_VERSION', '1.0.5');
 
 
 /*
