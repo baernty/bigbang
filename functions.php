@@ -3,6 +3,7 @@
  * bigbang functions and definitions
  *
  * @package bigbang
+ * @author Markus Schober
  */
 
 /*
