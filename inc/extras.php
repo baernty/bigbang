@@ -75,38 +75,6 @@ add_action('wp_head', 'bb_render_title');
 
 /*
 |--------------------------------------------------------------------------
-| Set author's data global
-|--------------------------------------------------------------------------
-*/
-if (!function_exists('bb_setup_author'))
-{
-    /**
-     * Sets the authordata global when viewing an author archive.
-     *
-     * This provides backwards compatibility with
-     * http://core.trac.wordpress.org/changeset/25574
-     *
-     * It removes the need to call the_post() and rewind_posts() in an author
-     * template to print information about the author.
-     *
-     * @global WP_Query $wp_query WordPress Query object.
-     * @return void
-     */
-    function bb_setup_author() {
-        global $wp_query;
-
-        if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
-            $GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
-        }
-    }
-
-    add_action( 'wp', 'bb_setup_author' );
-}
-
-
-
-/*
-|--------------------------------------------------------------------------
 | Big bang browser body_class
 |--------------------------------------------------------------------------
  */
